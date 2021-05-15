@@ -10,4 +10,12 @@
        ├── flower_photos（解压的数据集文件夹，3670个样本）  
        ├── train（生成的训练集，3306个样本）  
        └── val（生成的验证集，364个样本） 
+       
+├── industry_data
+       ├── industry_photos  
+       ├── train 
+       └── val
+1. 先使用collect_data.py 搜集数据
+2. 再使用rename.py 重命名数据, 删除原来的数据，再替换到对应的文件夹下
+3. 最后使用split.py 划分数据
 ```
