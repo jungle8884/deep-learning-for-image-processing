@@ -125,18 +125,22 @@ def pic_spider(keyword="keyword",
                         if is_classfication:
                             # 先下载下来
                             f.write(img)
-                            num_count += 1
                             post_class_fication, prob = predictImage_resnet(weights_path, json_path, pic_path)
                             # post_class_fication, prob = predictImage_vgg(weights_path, json_path, pic_path)
                             # 满足条件则 计数器加1
                             # if prob > 0.9:
-                            if prob > 0.9 and post_class_fication == "人类":  # 只下载类别属于'人类'的图片
-                                print("{}: {}-{} 已完成下载".format(num_count, post_class_fication, name))
+                            if prob > 0.9 and post_class_fication == "人类":  # 只下载工业机器人中被误判为：类别属于'人类'的图片
+                                print("\n{}: {}-{} 已完成下载\n".format(num_count, post_class_fication, name))
                             # 否则, 删除刚刚下载的图片
                             else:
+                                print("下载的图片不符合要求, 删除: {}".format(name))
                                 f.close()
-                                os.remove(pic_path)
-                                num_count -= 1
+                                try:
+                                    os.remove(pic_path)
+                                except Exception as e:
+                                    # print(e)
+                                    print("无法删除图片不符合要求的图片: {}".format(name))
+                            num_count += 1
                         # 不用判断直接下载
                         else:
                             f.write(img)
@@ -150,7 +154,7 @@ def download_train():
         # 使用爬虫下载图片
         # pic_spider(kw, start_page=11, end_page=60, file_path="train_images")  # train images
         pic_spider(kw,
-                   start_page=0, end_page=1000,
+                   start_page=0, end_page=2000,
                    file_path="train_images",
                    is_classfication=True)  # train images
 

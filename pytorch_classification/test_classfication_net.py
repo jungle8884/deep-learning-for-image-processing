@@ -45,8 +45,11 @@ def predictImage_vgg(weights_path, json_path, img="../1.jpeg"):
     try:
         img = Image.open(img_path).convert('RGB')
     except Exception as e:
-        print(e)
-        print("图片无法打开!")
+        img_names = img_path.split('\\')
+        lens = len(img_names)
+        img_name = img_names[lens - 1]
+        # print(e)
+        print("{} 无法打开!".format(img_name))
         return '未知', 0
     # plt.imshow(img)
     # [N, C, H, W]
@@ -100,8 +103,11 @@ def predictImage_resnet(weights_path, json_path, img="../1.jpeg"):
     try:
         img = Image.open(img_path).convert('RGB')
     except Exception as e:
-        print(e)
-        print("图片无法打开!")
+        img_names = img_path.split('\\')
+        lens = len(img_names)
+        img_name = img_names[lens - 1]
+        # print(e)
+        print("{} 无法打开!".format(img_name))
         return '未知', 0
     # plt.imshow(img)
     # [N, C, H, W]

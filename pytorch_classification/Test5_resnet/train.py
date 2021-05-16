@@ -4,6 +4,7 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 from PIL import Image
+from torch.utils.tensorboard import SummaryWriter
 from torchvision import transforms, datasets
 from tqdm import tqdm
 from model import resnet34, resnet50
